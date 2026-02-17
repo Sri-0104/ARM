@@ -1,19 +1,16 @@
 #include <LPC21xx.h>
 
-void UART_config(void);
-unsigned char UART_Rx(void);
+#define F 1<<16
+#define B 1<<17
+#define R 1<<18
+#define L 1<<19
 
-void UART_config(void)
+void motor_config(void)
 {
-	PINSEL0 = 0x05;
-	U0LCR = 0x83;
-	U0DLL = 97;
-	U0DLM = 0;
-	U0LCR = 0x03;
+	IODIR1 = F|B|R|L;
 }
-
-unsigned char UART_Rx(void)
+void forward(unsigned char f)
 {
-	while((U0LSR&0)==0);
-	return U0RBR;
+	IOSET1 = F;
+	IOCLR1 = B|R|L;
 }

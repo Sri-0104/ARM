@@ -16,11 +16,11 @@ int main()
 			rxbyte = UART_Rx();
 			switch (rxbyte)
 			{
-				case 'F':	;
+				case 'F': forward();break;
+				case 'B': backward();break;
+				case 'R': right();break;
+				case 'L': left();break;
+				case 'S': stop();break;
 			}
 		}
 }
-
-
-
-

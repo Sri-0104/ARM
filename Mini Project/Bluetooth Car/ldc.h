@@ -1,8 +1,8 @@
 #include <LPC21xx.h>
 
-#define LCD_D 0xff
-#define RS 1<<8
-#define E  1<<9
+#define LCD_D 0xff<<2
+#define RS 1<<10
+#define E  1<<11
 
 void LCD_init(void);
 void LCD_cmd(unsigned int);
@@ -55,4 +55,3 @@ void LCD_str(unsigned char* s)
 		delayms(20);
 	}
 }
-

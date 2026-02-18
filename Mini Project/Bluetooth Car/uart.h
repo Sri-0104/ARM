@@ -5,7 +5,7 @@ unsigned char UART_Rx(void);
 
 void UART_config(void)
 {
-	PINSEL0 = 0x05;
+	PINSEL0 = 0x04;
 	U0LCR = 0x83;
 	U0DLL = 97;
 	U0DLM = 0;
@@ -17,4 +17,3 @@ unsigned char UART_Rx(void)
 	while((U0LSR&0)==0);
 	return U0RBR;
 }
-

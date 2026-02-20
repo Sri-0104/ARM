@@ -21,7 +21,7 @@ void backward()
 	IOSET1 = M1B|M2B;
 	//IOCLR1 |= M1F|M2F;
 }
-void left ()
+/*void left ()
 {
 	if( IOPIN1==(M1F|M2F|M1B|M2B))  // in stop condition
 		IOSET1 = M1F;		   // right wheel forward and left wheel stop
@@ -48,8 +48,20 @@ void right ()
 		IOCLR1 = M1F;
 		IOSET1 = M2F;
 	}
+}	*/
+
+
+void left()
+{
+	IOSET1 = M1F;
+	IOCLR1 = M2F;
 }
 
+void right()
+{
+	IOSET1 = M2F;
+	IOCLR1 = M1F;
+}
 void stop()
 {
 	IOCLR1 = M1F|M1B|M2F|M2B;

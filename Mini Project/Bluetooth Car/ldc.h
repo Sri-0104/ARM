@@ -1,6 +1,6 @@
 #include <LPC21xx.h>
 
-#define LCD_D 0xff<<2
+#define LCD_D 0xff<<0
 #define RS 1<<10
 #define E  1<<11
 

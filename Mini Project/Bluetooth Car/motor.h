@@ -11,12 +11,20 @@ void motor_config(void)
 }
 void forward()
 {
+	LCD_cmd(0xC4);
+	LCD_str("        ");
+	LCD_cmd(0xC4);
+	LCD_str("Forward");
 	IOCLR1 = M1F|M2F|M1B|M2B;
 	IOSET1 = M1F|M2F;
 	//IOCLR1 |= M1B|M2B;
 }
 void backward()
 {
+	LCD_cmd(0xC4);
+	LCD_str("        ");
+	LCD_cmd(0xC4);
+	LCD_str("Backward");
 	IOCLR1 = M1F|M2F|M1B|M2B;
 	IOSET1 = M1B|M2B;
 	//IOCLR1 |= M1F|M2F;
@@ -53,16 +61,28 @@ void right ()
 
 void left()
 {
+	LCD_cmd(0xC4);
+	LCD_str("        ");
+	LCD_cmd(0xC4);
+	LCD_str("Left");
 	IOSET1 = M1F;
 	IOCLR1 = M2F;
 }
 
 void right()
 {
+	LCD_cmd(0xC4);
+	LCD_str("        ");
+	LCD_cmd(0xC4);
+	LCD_str("Right");
 	IOSET1 = M2F;
 	IOCLR1 = M1F;
 }
 void stop()
 {
+	LCD_cmd(0xC4);
+	LCD_str("        ");
+	LCD_cmd(0xC4);
+	LCD_str("Stop");
 	IOCLR1 = M1F|M1B|M2F|M2B;
 }	

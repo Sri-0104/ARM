@@ -52,6 +52,6 @@ void LCD_str(unsigned char* s)
 	while(*s)
 	{
 		LCD_data(*s++);
-		delayms(20);
 	}
+	delayms(100);
 }

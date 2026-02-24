@@ -5,16 +5,18 @@ int temp,i,j;
 unsigned char buf[20];
 void UART0_ISR(void)  __irq
 {
-	i=0;
 	temp = U0IIR;
-	if(temp == 0x04)
+	if((temp&0x0E) == 0x04)
 	{
 		  buf[i]= U0RBR;
-			U0THR = buf[i];
+		  U0THR = buf[i];
 		if(buf[i]!=10)
 			i++;
 		else
-		{for(j=0;j<i;j++)
+		{
+			LCD_cmd(0x01);
+			LCD_cmd(0x80);
+			for(j=0;j<i;j++)
 				LCD_data(buf[j]);
 		 i=0;
 		}
@@ -42,7 +44,6 @@ int main()
 {
 	IODIR0 = 1<<17;
 	LCD_init();
-	LCD_cmd(0x80);
 	UART0_config();
 	UART0_int_config();
 	while(1)

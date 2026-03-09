@@ -6,7 +6,7 @@
 #define MISO 1<<6
 #define CS   1<<7
 
-void SPI_init()
+int main()
 {
 	int i=11;
 	short int val=0;

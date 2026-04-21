@@ -1,18 +1,15 @@
-#include <lpc21xx.h>
+#include <LPC21xx.h>
 
-void ADC_Init()
+void adc_init()
 {
-    PINSEL1 |= (1 << 24);   // P0.28 as AD0.1
-    AD0CR = (1 << 1)        // Select channel AD0.1
-          | (4 << 8)        // Clock division
-          | (1 << 21);      // Enable ADC
+	PINSEL1|=0x400000;
+	ADCR |= 0x1;	  // to select ADC channel 0 input
+	ADCR |= (1<<10);  //to divide pclk(15mhz)by 4 to make it as less than 4.5mhz for adc
+	ADCR |=	(1<<21); //to make adc operational
 }
-
-unsigned int ADC_Read()
+int adc_read()
 {
-    AD0CR |= (1 << 24);          // Start conversion
-
-    while (!(AD0GDR & (1 << 31)));  // Wait till DONE = 1
-
-    return (AD0GDR >> 6) & 0x3FF;   // Extract 10-bit result
+    ADCR |= (1 << 24);          // Start conversion
+    while (!(ADDR & (1UL<<31)));  // Wait till DONE = 1
+    return ((ADDR >> 6) & 0x3FF);   // Extract 10-bit result
 }

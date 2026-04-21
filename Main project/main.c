@@ -27,7 +27,7 @@ int main()
 
 	while(1)
 	{
-		temp=((adc_read())*3.3*100)/1023;
+		temp=((adc_read())*3.3*100)/1024;
 		sprintf(data,"GET /update?api_key=5YFAGY98K9AV8DSO&field1=%d\r\n",temp);
 		ESP_cmd("AT+CIPSTART=\"TCP\",\"api.thingspeak.com\",80\r\n",4000);
 		sprintf(len_buf,"%d",strlen(data));
